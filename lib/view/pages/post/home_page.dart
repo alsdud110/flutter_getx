@@ -38,6 +38,7 @@ class HomePage extends StatelessWidget {
   }
 
   Widget _buildDrawer(BuildContext context) {
+    UserController u = Get.find(); // put 없으면 만들고, 있으면 찾기
     return Container(
       width: getDrawerWidth(context),
       height: double.infinity,
@@ -86,6 +87,7 @@ class HomePage extends StatelessWidget {
                   ),
                 ),
                 onPressed: () {
+                  u.logout();
                   Get.to(LoginPage());
                 },
               ),
