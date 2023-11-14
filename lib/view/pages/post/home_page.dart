@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_blog/controller/post_controller.dart';
 import 'package:flutter_blog/controller/user_controller.dart';
-import 'package:flutter_blog/domain/post/post.dart';
 import 'package:flutter_blog/view/pages/post/detail_page.dart';
 import 'package:flutter_blog/view/pages/post/write_page.dart';
 import 'package:flutter_blog/view/pages/user/login_page.dart';
@@ -35,7 +34,12 @@ class HomePage extends StatelessWidget {
             itemBuilder: (context, index) {
               return ListTile(
                 onTap: () {
-                  Get.to(DetailPage(id: index), arguments: "arguments 속성 테스트");
+                  // 클릭 할 때 PostController.findById 를 실행해서 obs Post 객체에 데이터를 넣어둔다.
+                  // 그리고 DetailPage 에 가서 Controller Get.find() 하면 p.post.value.id, title 로 뿌려주면 됨
+                  // 뒤에 ! 를 붙이면 절대 null 이 아니니까 걱정하지 말라는 뜻
+                  p.findById(p.posts[index].id!);
+                  Get.to(DetailPage(id: p.posts[index].id),
+                      arguments: "arguments 속성 테스트");
                 },
                 title: Text("${p.posts[index].title}"),
                 leading: Text("${p.posts[index].id}"),
