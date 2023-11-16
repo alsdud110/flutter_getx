@@ -40,7 +40,7 @@ class DetailPage extends StatelessWidget {
                           child: const Text("삭제"),
                           onPressed: () async {
                             await p.deleteById(p.post.value.id!);
-                            Get.off(() => const HomePage());
+                            Get.off(() => HomePage());
                           },
                         ),
                         const SizedBox(

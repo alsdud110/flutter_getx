@@ -9,7 +9,8 @@ import 'package:flutter_blog/size.dart';
 import 'package:get/get.dart';
 
 class HomePage extends StatelessWidget {
-  const HomePage({super.key});
+  var refreshKey = GlobalKey<RefreshIndicatorState>();
+  HomePage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -26,25 +27,32 @@ class HomePage extends StatelessWidget {
         ),
         body: Obx(
           // ListView 를 Obx(() => ListView) 이런식으로 하면 됨
-          () => ListView.separated(
-            itemCount: p.posts.length,
-            separatorBuilder: (context, index) {
-              return const Divider();
-            },
-            itemBuilder: (context, index) {
-              return ListTile(
-                onTap: () {
-                  // 클릭 할 때 PostController.findById 를 실행해서 obs Post 객체에 데이터를 넣어둔다.
-                  // 그리고 DetailPage 에 가서 Controller Get.find() 하면 p.post.value.id, title 로 뿌려주면 됨
-                  // 뒤에 ! 를 붙이면 절대 null 이 아니니까 걱정하지 말라는 뜻
-                  p.findById(p.posts[index].id!);
-                  Get.to(() => DetailPage(id: p.posts[index].id),
-                      arguments: "arguments 속성 테스트");
-                },
-                title: Text("${p.posts[index].title}"),
-                leading: Text("${p.posts[index].id}"),
-              );
-            },
+          // ListView로 만들고 RefreshIndicator 위젯으로 Wrappging
+          () => RefreshIndicator(
+            onRefresh: () async {
+              await p.findAll();
+            }, // onRefresh 를 쓰려면 async를 해야함
+            key: refreshKey,
+            child: ListView.separated(
+              itemCount: p.posts.length,
+              separatorBuilder: (context, index) {
+                return const Divider();
+              },
+              itemBuilder: (context, index) {
+                return ListTile(
+                  onTap: () {
+                    // 클릭 할 때 PostController.findById 를 실행해서 obs Post 객체에 데이터를 넣어둔다.
+                    // 그리고 DetailPage 에 가서 Controller Get.find() 하면 p.post.value.id, title 로 뿌려주면 됨
+                    // 뒤에 ! 를 붙이면 절대 null 이 아니니까 걱정하지 말라는 뜻
+                    p.findById(p.posts[index].id!);
+                    Get.to(() => DetailPage(id: p.posts[index].id),
+                        arguments: "arguments 속성 테스트");
+                  },
+                  title: Text("${p.posts[index].title}"),
+                  leading: Text("${p.posts[index].id}"),
+                );
+              },
+            ),
           ),
         ));
   }

@@ -61,7 +61,7 @@ class LoginPage extends StatelessWidget {
                     _username.text.trim(), _password.text.trim());
 
                 if (result == 1) {
-                  Get.to(() => const HomePage());
+                  Get.to(() => HomePage());
                 } else {
                   Get.snackbar("로그인 시도", "로그인 실패");
                 }
