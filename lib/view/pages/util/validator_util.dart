@@ -39,7 +39,7 @@ Function validateEmail() {
       return "이메일에 공백이 들어갈 수 없습니다.";
     } else if (!value.isEmail) {
       return "이메일 형식에 맞지 않습니다.";
-    } else if (value.length > 12) {
+    } else if (value.length > 50) {
       return "길이를 초과하였습니다.";
     } else if (value.length < 4) {
       return "이메일의 최소 길이는 4자입니다.";

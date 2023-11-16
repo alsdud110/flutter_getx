@@ -24,4 +24,8 @@ class UserController extends GetxController {
       return -1;
     }
   }
+
+  Future<int> join(String username, String password, String email) async {
+    return await _userRepository.join(username, password, email);
+  }
 }
