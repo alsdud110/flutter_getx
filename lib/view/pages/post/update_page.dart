@@ -3,7 +3,6 @@ import 'package:flutter_blog/controller/post_controller.dart';
 import 'package:flutter_blog/view/components/custom_elevated_button.dart';
 import 'package:flutter_blog/view/components/custom_text_form_field.dart';
 import 'package:flutter_blog/view/components/custom_textarea.dart';
-import 'package:flutter_blog/view/pages/post/detail_page.dart';
 import 'package:flutter_blog/view/pages/util/validator_util.dart';
 import 'package:get/get.dart';
 

@@ -39,12 +39,11 @@ class PostController extends GetxController {
       삭제요청을 받은 id 값과, posts 리스트에 있는 id 값이 없는 것만 골라서 다시 리스트로 만듬
       그리고, Obs가 관찰하고 있는 posts.value 에 그 리스트를 담음
      */
-      List<Post> result = posts.value.where((post) => post.id != id).toList();
+      List<Post> result = posts.where((post) => post.id != id).toList();
       posts.value = result;
     }
   }
 
-  @override
   Future<void> updateById(int id, String title, String content) async {
     /*
       repository에서 Post객체로 받았고

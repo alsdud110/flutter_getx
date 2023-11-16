@@ -8,6 +8,7 @@ import 'package:flutter_blog/view/pages/user/user_info.dart';
 import 'package:flutter_blog/size.dart';
 import 'package:get/get.dart';
 
+// ignore: must_be_immutable
 class HomePage extends StatelessWidget {
   var refreshKey = GlobalKey<RefreshIndicatorState>();
   HomePage({super.key});

@@ -7,6 +7,7 @@ import 'package:flutter_blog/view/pages/user/join_page.dart';
 import 'package:flutter_blog/view/pages/util/validator_util.dart';
 import 'package:get/get.dart';
 
+// ignore: must_be_immutable
 class LoginPage extends StatelessWidget {
   final _formKey = GlobalKey<FormState>();
   UserController userController = Get.put(UserController());
