@@ -3,16 +3,20 @@ import 'package:flutter/material.dart';
 class CustomTextArea extends StatelessWidget {
   final String hint;
   final funcValidator;
-  final String? value;
+  final controller;
+
   const CustomTextArea(
-      {super.key, required this.hint, required this.funcValidator, this.value});
+      {super.key,
+      required this.hint,
+      required this.funcValidator,
+      this.controller});
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 5),
       child: TextFormField(
-        initialValue: value ?? "",
+        controller: controller,
         maxLines: 10,
         validator: funcValidator,
         decoration: InputDecoration(

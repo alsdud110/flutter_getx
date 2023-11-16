@@ -43,4 +43,23 @@ class PostController extends GetxController {
       posts.value = result;
     }
   }
+
+  @override
+  Future<void> updateById(int id, String title, String content) async {
+    /*
+      repository에서 Post객체로 받았고
+      obs 가 관찰하고 있는 Post 객체에 담아주면 끝
+      그리고, 홈화면의 목록에 있는 제목도 같이 변경을 해줘야하는데
+      obs 가 관찰하고 있는 posts 리스트에서 Post 객체를 하나 씩 Map 에 담고
+      담으면서 하나씩 조회를 해서 우리가 수정한 id에 해당하는 posts -> Post 의 id 와 같으면
+      방금 새로받아온 Post 객체로 덮어씌운다~
+      그리고 toList() 와 함께 obs가 관찰하고 있는 posts 리스트에 담아주면 끝
+    */
+    Post post = await _postRepository.updateById(id, title, content);
+
+    if (post.id != null) {
+      this.post.value = post;
+      posts.value = posts.map((e) => e.id == id ? post : e).toList();
+    }
+  }
 }

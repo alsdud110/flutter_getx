@@ -1,4 +1,5 @@
 import 'package:flutter_blog/controller/dto/CMRespDto.dart';
+import 'package:flutter_blog/controller/dto/UpdateReqDto.dart';
 import 'package:flutter_blog/domain/post/post.dart';
 import 'package:flutter_blog/domain/post/post_provider.dart';
 import 'package:get/get_connect/http/src/response/response.dart';
@@ -44,5 +45,25 @@ class PostRepository {
     CMRespDto cmRespDto = CMRespDto.fromJson(body);
 
     return cmRespDto.code ?? -1;
+  }
+
+  Future<Post> updateById(int id, String title, String content) async {
+    UpdateReqDto dto = UpdateReqDto(title, content);
+    Response response = await _postProvider.updateById(id, dto.toJson());
+
+    /*
+      응답 body에 상세보기 id, title, content 가 담겨있음
+      그러니까 findById() 처럼 Post객체를 그대로 컨트롤러 보내주면 됨
+     */
+
+    dynamic body = response.body;
+    CMRespDto cmRespDto = CMRespDto.fromJson(body);
+
+    if (cmRespDto.code == 1) {
+      Post post = Post.fromJson(cmRespDto.data);
+      return post;
+    } else {
+      return Post();
+    }
   }
 }

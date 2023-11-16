@@ -49,7 +49,10 @@ class DetailPage extends StatelessWidget {
                         ElevatedButton(
                           child: const Text("수정"),
                           onPressed: () {
-                            Get.to(UpdatePage());
+                            Get.to(() => UpdatePage(
+                                id: p.post.value.id!,
+                                title: p.post.value.title!,
+                                content: p.post.value.content!));
                           },
                         ),
                       ],
