@@ -71,7 +71,7 @@ class LoginPage extends StatelessWidget {
           TextButton(
             child: const Text("아직 회원가입이 안되어 있나요?"),
             onPressed: () {
-              Get.to(JoinPage());
+              Get.to(() => JoinPage());
             },
           ),
         ],

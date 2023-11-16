@@ -79,7 +79,7 @@ class HomePage extends StatelessWidget {
                   ),
                 ),
                 onPressed: () {
-                  Get.to(WritePage());
+                  Get.to(() => WritePage());
                 },
               ),
               const Divider(),
@@ -93,7 +93,7 @@ class HomePage extends StatelessWidget {
                   ),
                 ),
                 onPressed: () {
-                  Get.to(const UserInfo());
+                  Get.to(() => const UserInfo());
                 },
               ),
               const Divider(),
@@ -108,7 +108,7 @@ class HomePage extends StatelessWidget {
                 ),
                 onPressed: () {
                   u.logout();
-                  Get.to(LoginPage());
+                  Get.to(() => LoginPage());
                 },
               ),
               const Divider(),

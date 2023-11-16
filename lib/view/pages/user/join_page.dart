@@ -53,14 +53,14 @@ class JoinPage extends StatelessWidget {
             text: "회원가입",
             funcpageRoute: () {
               if (_formKey.currentState!.validate()) {
-                Get.to(LoginPage());
+                Get.to(() => LoginPage());
               }
             },
           ),
           TextButton(
             child: const Text("이미 회원가입이 되어 있나요?"),
             onPressed: () {
-              Get.to(LoginPage());
+              Get.to(() => LoginPage());
             },
           ),
         ],
