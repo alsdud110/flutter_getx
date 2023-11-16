@@ -32,7 +32,7 @@ class WritePage extends StatelessWidget {
                 text: "글쓰기",
                 funcpageRoute: () {
                   if (_formKey.currentState!.validate()) {
-                    Get.to(HomePage());
+                    Get.to(() => HomePage());
                   }
                 },
               ),

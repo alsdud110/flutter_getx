@@ -93,6 +93,7 @@ class HomePage extends StatelessWidget {
                   ),
                 ),
                 onPressed: () {
+                  Navigator.pop(context);
                   Get.to(() => const UserInfo());
                 },
               ),
