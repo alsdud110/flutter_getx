@@ -14,6 +14,8 @@ class DetailPage extends StatelessWidget {
     UserController u = Get.find();
     PostController p = Get.find();
     // String data = Get.arguments;
+    print("로그인 유저아이디 : ${u.principal.value.id}");
+    print("작성자 유저아이디: ${p.post.value.user!.id}");
     return Scaffold(
       appBar: AppBar(
         title: Text("게시글 아이디 : $id, 로그인 상태 : ${u.isLogin}"),
@@ -32,25 +34,27 @@ class DetailPage extends StatelessWidget {
                 ),
               ),
               const Divider(),
-              Row(
-                children: [
-                  ElevatedButton(
-                    child: const Text("삭제"),
-                    onPressed: () {
-                      Get.off(const HomePage());
-                    },
-                  ),
-                  const SizedBox(
-                    width: 20,
-                  ),
-                  ElevatedButton(
-                    child: const Text("수정"),
-                    onPressed: () {
-                      Get.to(UpdatePage());
-                    },
-                  ),
-                ],
-              ),
+              u.principal.value.id == p.post.value.user!.id
+                  ? Row(
+                      children: [
+                        ElevatedButton(
+                          child: const Text("삭제"),
+                          onPressed: () {
+                            Get.off(const HomePage());
+                          },
+                        ),
+                        const SizedBox(
+                          width: 20,
+                        ),
+                        ElevatedButton(
+                          child: const Text("수정"),
+                          onPressed: () {
+                            Get.to(UpdatePage());
+                          },
+                        ),
+                      ],
+                    )
+                  : const SizedBox(),
               Expanded(
                   child: SingleChildScrollView(
                       child: Text("${p.post.value.content}"))),

@@ -57,10 +57,10 @@ class LoginPage extends StatelessWidget {
             funcpageRoute: () async {
               if (_formKey.currentState!.validate()) {
                 //Get.to(const HomePage());
-                String token = await userController.login(
+                int result = await userController.login(
                     _username.text.trim(), _password.text.trim());
 
-                if (token != "-1") {
+                if (result == 1) {
                   Get.to(() => const HomePage());
                 } else {
                   Get.snackbar("로그인 시도", "로그인 실패");

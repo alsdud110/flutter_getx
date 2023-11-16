@@ -38,7 +38,7 @@ class HomePage extends StatelessWidget {
                   // 그리고 DetailPage 에 가서 Controller Get.find() 하면 p.post.value.id, title 로 뿌려주면 됨
                   // 뒤에 ! 를 붙이면 절대 null 이 아니니까 걱정하지 말라는 뜻
                   p.findById(p.posts[index].id!);
-                  Get.to(DetailPage(id: p.posts[index].id),
+                  Get.to(() => DetailPage(id: p.posts[index].id),
                       arguments: "arguments 속성 테스트");
                 },
                 title: Text("${p.posts[index].title}"),
