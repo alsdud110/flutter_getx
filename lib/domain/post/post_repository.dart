@@ -66,4 +66,22 @@ class PostRepository {
       return Post();
     }
   }
+
+  Future<Post> write(String title, String content) async {
+    UpdateReqDto dto = UpdateReqDto(title, content);
+
+    Response response = await _postProvider.write(dto.toJson());
+    dynamic body = response.body;
+
+    CMRespDto cmRespDto = CMRespDto.fromJson(body);
+
+    if (cmRespDto.code == 1) {
+      print("게시글 작성 완료");
+      Post post = Post.fromJson(cmRespDto.data);
+      return post;
+    } else {
+      print("게시글 작성 실패");
+      return Post();
+    }
+  }
 }

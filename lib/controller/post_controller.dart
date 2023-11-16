@@ -62,4 +62,12 @@ class PostController extends GetxController {
       posts.value = posts.map((e) => e.id == id ? post : e).toList();
     }
   }
+
+  Future<void> write(String title, String content) async {
+    Post post = await _postRepository.write(title, content);
+
+    if (post.id != null) {
+      posts.add(post);
+    }
+  }
 }
