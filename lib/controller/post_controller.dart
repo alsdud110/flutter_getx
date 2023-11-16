@@ -29,9 +29,16 @@ class PostController extends GetxController {
   }
 
   Future<void> deleteById(int id) async {
+    // 삭제가 되었는지 응답 코드 수신
     int code = await _postRepository.deleteById(id);
 
+    // 정상 삭제 완료
     if (code == 1) {
+      /*
+      obs 가 관찰하고 잇는 posts 리스트에서
+      삭제요청을 받은 id 값과, posts 리스트에 있는 id 값이 없는 것만 골라서 다시 리스트로 만듬
+      그리고, Obs가 관찰하고 있는 posts.value 에 그 리스트를 담음
+     */
       List<Post> result = posts.value.where((post) => post.id != id).toList();
       posts.value = result;
     }
