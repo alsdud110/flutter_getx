@@ -37,4 +37,12 @@ class PostRepository {
       return Post(); // 빈 배열을 리턴
     }
   }
+
+  Future<int> deleteById(int id) async {
+    Response response = await _postProvider.deleteById(id);
+    dynamic body = response.body;
+    CMRespDto cmRespDto = CMRespDto.fromJson(body);
+
+    return cmRespDto.code ?? -1;
+  }
 }

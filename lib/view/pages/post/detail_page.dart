@@ -38,8 +38,9 @@ class DetailPage extends StatelessWidget {
                       children: [
                         ElevatedButton(
                           child: const Text("삭제"),
-                          onPressed: () {
-                            Get.off(const HomePage());
+                          onPressed: () async {
+                            await p.deleteById(p.post.value.id!);
+                            Get.off(() => const HomePage());
                           },
                         ),
                         const SizedBox(
